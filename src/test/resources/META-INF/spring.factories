@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory = com.kpihx_lab.\
+    youtodo.config.SqlTestContainersSpringContextCustomizerFactory

@@ -1,0 +1,15 @@
+
+pluginManagement {
+    repositories {
+        // jhipster-needle-gradle-plugin-management-repositories - JHipster will add additional entries here
+    }
+    plugins {
+        id 'com.google.cloud.tools.jib' version "${jibPluginVersion}"
+        id 'com.gorylenko.gradle-git-properties' version "${gitPropertiesPluginVersion}"
+        id 'com.github.node-gradle.node' version "${gradleNodePluginVersion}"
+        id "org.liquibase.gradle" version "${liquibasePluginVersion}"
+        // jhipster-needle-gradle-plugin-management-plugins - JHipster will add additional entries here
+    }
+}
+
+rootProject.name = "you-todo"
