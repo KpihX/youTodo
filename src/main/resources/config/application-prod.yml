@@ -40,6 +40,19 @@ spring:
     port: 25
     username: root
     password: '|yOUkNOW0'
+  # mail:
+  #   host: smtp.gmail.com
+  #   port: 587
+  #   user: kapoivha@gmail.com
+  #   password: 5QCaiomipaB3
+  #   protocol: smtp
+  #   tls: true
+  #   auth: true
+  #   from: kapoivha@gmail.com
+  #   properties.mail.smtp:
+  #       auth: true
+  #       starttls.enable: true
+  #       ssl.trust: smtp.gmail.com
   r2dbc:
     url: r2dbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root

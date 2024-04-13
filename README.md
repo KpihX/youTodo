@@ -15,7 +15,6 @@ In the project root, JHipster generates configuration files for tools like git, 
 - `.yo-resolve` (optional) - Yeoman conflict resolver
   Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if omitted) or force. Lines starting with `#` are considered comments and are ignored.
 - `.jhipster/*.json` - JHipster entity configuration files
-
 - `npmw` - wrapper to use locally installed npm.
   JHipster installs Node and npm locally using the build tool by default. This wrapper makes sure npm is installed locally and uses it avoiding some differences different versions can cause. By using `./npmw` instead of the traditional `npm` you can configure a Node-less environment to develop or test your application.
 - `/src/main/docker` - Docker configurations for the application and services that the application depends on
@@ -34,7 +33,23 @@ You will only need to run this command when dependencies change in [package.json
 npm install
 ```
 
-We use npm scripts and [Webpack][] as our build system.
+We use npm scripts and [Webpack][Webpack] as our build system.
+
+After, you have to got in `src/main/resources/config/application-dev.yml` and replace this :
+
+```java
+liquibase:
+    # Remove 'faker' if you do not want the sample data to be loaded automatically
+    contexts: dev, faker
+    url: jdbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+  mail:
+    host: localhost
+    port: 25
+    username: root
+    password: '[password]'
+```
+
+with your mysql user and password ; and eventually, change localhost with the IP of the server, if the database is not local.
 
 Run the following commands in two separate terminals to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
@@ -70,22 +85,22 @@ Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipste
 
 ### Managing dependencies
 
-For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
+For example, to add [Leaflet][Leaflet] library as a runtime dependency of your application, you would run following command:
 
 ```
 npm install --save --save-exact leaflet
 ```
 
-To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
+To benefit from TypeScript type definitions from [DefinitelyTyped][DefinitelyTyped] repository in development, you would run following command:
 
 ```
 npm install --save-dev --save-exact @types/leaflet
 ```
 
-Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
+Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][Webpack] knows about them:
 Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
 
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
+For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][Using JHipster in development].
 
 ## Building for production
 
@@ -106,7 +121,7 @@ java -jar build/libs/*.jar
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
-Refer to [Using JHipster in production][] for more details.
+Refer to [Using JHipster in production][Using JHipster in production] for more details.
 
 ### Packaging as war
 
@@ -128,7 +143,7 @@ docker compose -f src/main/docker/jhipster-control-center.yml up
 
 ### Client tests
 
-Unit tests are run by [Jest][]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
+Unit tests are run by [Jest][Jest]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
 
 ```
 npm test
@@ -169,7 +184,7 @@ sonar.login=admin
 sonar.password=admin
 ```
 
-For more information, refer to the [Code quality page][].
+For more information, refer to the [Code quality page][Code quality page].
 
 ### Using Docker to simplify development (optional)
 
@@ -208,11 +223,11 @@ docker compose -f src/main/docker/app.yml up -d
 
 When running Docker Desktop on MacOS Big Sur or later, consider enabling experimental `Use the new Virtualization framework` for better processing performance ([disk access performance is worse](https://github.com/docker/roadmap/issues/7)).
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+For more information refer to [Using Docker and Docker-Compose][Using Docker and Docker-Compose], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
 ## Continuous Integration (optional)
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][Setting up Continuous Integration] page for more information.
 
 [JHipster Homepage and latest documentation]: https://www.jhipster.tech
 [JHipster 8.2.1 archive]: https://www.jhipster.tech/documentation-archive/v8.2.1
