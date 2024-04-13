@@ -38,12 +38,12 @@ spring:
   mail:
     host: localhost
     port: 25
-    username:
-    password:
+    username: root
+    password: '|yOUkNOW0'
   r2dbc:
     url: r2dbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
-    password:
+    password: '|yOUkNOW0'
   thymeleaf:
     cache: true
 

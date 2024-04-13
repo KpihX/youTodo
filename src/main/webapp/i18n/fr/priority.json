@@ -1,0 +1,10 @@
+{
+  "youTodoApp": {
+    "Priority": {
+      "null": "",
+      "BASSE": "BASSE",
+      "MOYENNE": "MOYENNE",
+      "HAUTE": "HAUTE"
+    }
+  }
+}

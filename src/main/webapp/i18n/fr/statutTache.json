@@ -1,0 +1,10 @@
+{
+  "youTodoApp": {
+    "StatutTache": {
+      "null": "",
+      "OUVERT": "OUVERT",
+      "EN_COURS": "EN_COURS",
+      "TERMINE": "TERMINE"
+    }
+  }
+}

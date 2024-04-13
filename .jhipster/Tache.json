@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20240413110914"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "titre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dateEcheance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "priorite",
+      "fieldType": "Priorite",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BASSE,MOYENNE,HAUTE"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutTache",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OUVERT,EN_COURS,TERMINE"
+    }
+  ],
+  "name": "Tache",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "categorie",
+      "relationshipName": "categorie",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,28 @@
+enum Priorite {
+  BASSE, MOYENNE, HAUTE
+}
+
+enum StatutTache {
+  OUVERT, EN_COURS, TERMINE
+}
+
+entity Tache {
+  titre String required minlength(3) maxlength(100)
+  description TextBlob
+  dateEcheance LocalDate required
+  priorite Priorite required
+  statut StatutTache required
+}
+
+entity Categorie {
+  nom String required minlength(3) maxlength(50)
+  description TextBlob
+}
+
+relationship ManyToOne {
+  Tache{categorie(nom)} to Categorie
+  Tache{user(login)} to User with builtInEntity
+}
+
+paginate Tache, Categorie with infinite-scroll
+service all with serviceImpl

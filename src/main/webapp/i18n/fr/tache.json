@@ -1,0 +1,30 @@
+{
+  "youTodoApp": {
+    "tache": {
+      "home": {
+        "title": "Tâches",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer une nouvelle Tâche",
+        "createOrEditLabel": "Créer ou éditer une Tâche",
+        "notFouned": "Aucune Tâche trouvé"
+      },
+      "created": "Une nouvelle Tâche a été créé avec l'identifiant {{ param }}",
+      "updated": "La Tâche avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Tâche avec l'identifiant {{ param }} a été supprimée",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer la Tâche {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tâche"
+      },
+      "id": "ID",
+      "titre": "Titre",
+      "description": "Description",
+      "dateEcheance": "Echéance",
+      "priorite": "Priorité",
+      "statut": "Statut",
+      "categorie": "Catégorie",
+      "user": "Concerné"
+    }
+  }
+}

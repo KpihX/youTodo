@@ -1,0 +1,25 @@
+{
+  "youTodoApp": {
+    "categorie": {
+      "home": {
+        "title": "Catégories",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer une nouvelle Catégorie",
+        "createOrEditLabel": "Créer ou éditer une Catégorie",
+        "notFound": "Aucune Catégorie trouvé!"
+      },
+      "created": "Une nouvelle Catégorie a été créé avec l'identifiant {{ param }}",
+      "updated": "La Catégorie avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Catégorie avec l'identifiant {{ param }} a été supprimée",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer la Catégorie {{ id }} ?"
+      },
+      "detail": {
+        "title": "Catégorie"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "description": "Description"
+    }
+  }
+}

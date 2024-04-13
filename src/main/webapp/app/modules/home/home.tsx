@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { Row, Col, Alert } from 'reactstrap';
+import Tache from 'app/entities/tache/tache';
 
 import { useAppSelector } from 'app/config/store';
 
@@ -14,6 +15,7 @@ export const Home = () => {
     <Row>
       <Col md="3" className="pad">
         <span className="hipster rounded" />
+        <p>Je suis Alicia, votre assitante!</p>
       </Col>
       <Col md="9">
         <h1 className="display-4">
@@ -28,6 +30,7 @@ export const Home = () => {
               <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                 You are logged in as user {account.login}.
               </Translate>
+              <Tache />
             </Alert>
           </div>
         ) : (
@@ -57,7 +60,7 @@ export const Home = () => {
           <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
         </p>
 
-        <ul>
+        {/* <ul>
           <li>
             <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
               <Translate contentKey="home.link.homepage">JHipster homepage</Translate>
@@ -83,12 +86,12 @@ export const Home = () => {
               <Translate contentKey="home.link.follow">follow @jhipster on Twitter</Translate>
             </a>
           </li>
-        </ul>
+        </ul> */}
 
         <p>
           <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
+          <a href="https://github.com/KpihX/youTodo" target="_blank" rel="noopener noreferrer">
+            Vous pouvez contribuez à youTodo, via notre dépôt Github
           </a>
           !
         </p>
