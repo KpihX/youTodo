@@ -35,16 +35,10 @@ spring:
     contexts: dev, faker
     url: jdbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
-    protocol: smtp
-    tls: true
-    properties.mail.smtp:
-      auth: true
-      starttls.enable: true
-    from: ${MAIL_FROM}
+    host: localhost
+    port: 25
+    username: root
+    password: '|yOUkNOW0'
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   r2dbc:
