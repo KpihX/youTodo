@@ -22,6 +22,7 @@ export const Tache = () => {
   );
   const [sorting, setSorting] = useState(false);
 
+  const account = useAppSelector(state => state.authentication.account);
   const tacheList = useAppSelector(state => state.tache.entities);
   const loading = useAppSelector(state => state.tache.loading);
   const links = useAppSelector(state => state.tache.links);
@@ -30,6 +31,7 @@ export const Tache = () => {
   const getAllEntities = () => {
     dispatch(
       getEntities({
+        login: account.login,
         page: paginationState.activePage - 1,
         size: paginationState.itemsPerPage,
         sort: `${paginationState.sort},${paginationState.order}`,

@@ -13,7 +13,7 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-logging:
+logging:http://localhost:9010/login
   level:
     ROOT: INFO
     tech.jhipster: INFO
@@ -36,23 +36,16 @@ spring:
     contexts: prod
     url: jdbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
-    host: localhost
-    port: 25
-    username: root
-    password: '|yOUkNOW0'
-  # mail:
-  #   host: smtp.gmail.com
-  #   port: 587
-  #   user: kapoivha@gmail.com
-  #   password: 5QCaiomipaB3
-  #   protocol: smtp
-  #   tls: true
-  #   auth: true
-  #   from: kapoivha@gmail.com
-  #   properties.mail.smtp:
-  #       auth: true
-  #       starttls.enable: true
-  #       ssl.trust: smtp.gmail.com
+    host: smtp-mail.outlook.com
+    port: 587
+    username: kapoivha@outlook.com  #Replace this field with your Outlook username.
+    password: 3BacoiimapQ5               #Replace this field with your Outlook password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp-mail.outlook.com
   r2dbc:
     url: r2dbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
