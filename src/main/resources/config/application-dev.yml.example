@@ -37,8 +37,8 @@ spring:
   mail:
     host: smtp-mail.outlook.com
     port: 587
-    username: kapoivha@outlook.com  #Replace this field with your Outlook username.
-    password: 3BacoiimapQ5               #Replace this field with your Outlook password.
+    username: xyz@outlook.com  #Replace this field with your Outlook username.
+    password: ******              #Replace this field with your Outlook password.
     protocol: smtp
     tls: true
     properties.mail.smtp:
@@ -50,7 +50,7 @@ spring:
   r2dbc:
     url: r2dbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
-    password: '|yOUkNOW0'
+    password: '******'
   thymeleaf:
     cache: false
 

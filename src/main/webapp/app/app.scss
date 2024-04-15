@@ -265,6 +265,39 @@ a:hover {
   cursor: pointer;
 }
 
+.bg-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+.rad {
+  border-radius: 25px;
+}
+.bg-success {
+  background-color: #28a745;
+  color: #fff;
+}
+.bg-gray {
+  background-color: #d1e6fc; /* Couleur de fond gris */
+}
+.bg-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+.marge_ {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.marge {
+  margin-top: 50px;
+  margin-left: 50px;
+  border: none;
+}
+
+.bg-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
 button.anchor-btn {
   background: none;
   border: none;

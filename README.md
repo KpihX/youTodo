@@ -35,29 +35,52 @@ npm install
 
 We use npm scripts and [Webpack][Webpack] as our build system.
 
-After, you have to got in `src/main/resources/config/application-dev.yml` and replace this :
+Now you have to rename the files `applications-dev.yml.example`, `application-prod.yml.example` and `application.yml.example` in the folder `src/main/resources/config/`, by removing the `.example` at the end of these files. In the following part, we will configure databse access and SMTP service ; so you should have and outlook acount (xyz@outlook.com) to continue.
+
+After, you have to got in `src/main/resources/config/application-dev.yml` and `src/main/resources/config/application-prod.yml , and `replace this :
 
 ```java
-liquibase:
-    # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
-    url: jdbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
-  mail:
-    host: localhost
-    port: 25
+mail:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: xyz@outlook.com  #Replace this field with your Outlook username.
+    password: ******           #Replace this field with your Outlook password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp-mail.outlook.com
+  messages:
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/youTodo?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
-    password: '[password]'
+    password: '******' # Replace this field with your MySQL password (serveur localhost)
 ```
 
-with your mysql user and password ; and eventually, change localhost with the IP of the server, if the database is not local.
+with your mail information for email sending and with your mysql localhost.
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
+Don't forget ' ' at the level of the database password
+
+Before starting thebuild process, you have to go in `src/main/resources/config/application-dev.yml` and replace this:
+
+```java
+jhipster
+    mail:
+        from: xyz@outlook.com  # The same account as the one in application-dev.yml
+```
+
+with the same outlook account you used in the previous configuration.
+
+Now, run successively the commands downstream in order to build the backend and start the front-end
 
 ```
-./gradlew -x webapp
+./gradlew --warning-mode all
 npm start
 ```
+
+And you'ill have to run successively these 2 commands, everytime, you'il want to launch the application.
 
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
