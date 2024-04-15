@@ -21,6 +21,8 @@ In the project root, JHipster generates configuration files for tools like git, 
 
 ## Development
 
+[0]
+
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
 1. [Node.js](https://nodejs.org/): We use Node to run a development web server and build the project.
@@ -87,6 +89,11 @@ specifying a newer version in [package.json](package.json). You can also run `np
 Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
 
 The `npm run` command will list all of the scripts available to run for this project.
+
+[1]
+
+If you want to recreate the project just delete everything apart app.jdl, then run
+`jhipster` (in the shell) and choose your configurations options (MySQL for the database, React for the front-end). Finally go in the folder created by Jhipster, put the app.jdl file inside and run (while being in this folder) the shell command `jhipster import-jdl app.jdl`, to recreate the project strcuture. And you'll now have th follow the configuration from the point [0] to [1]
 
 ### PWA Support
 
