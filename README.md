@@ -35,7 +35,7 @@ npm install
 
 We use npm scripts and [Webpack][Webpack] as our build system.
 
-Now you have to rename the files `applications-dev.yml.example`, `application-prod.yml.example` and `application.yml.example` in the folder `src/main/resources/config/`, by removing the `.example` at the end of these files. In the following part, we will configure databse access and SMTP service ; so you should have and outlook acount (xyz@outlook.com) to continue.
+Now you have to rename the files `applications-dev.yml.example`, `application-prod.yml.example`, `application-tls.yml.example` and `application.yml.example` in the folder `src/main/resources/config/`, by removing the `.example` at the end of these files. In the following part, we will configure databse access and SMTP service ; so you should have and outlook acount (xyz@outlook.com) to continue.
 
 After, you have to got in `src/main/resources/config/application-dev.yml` and `src/main/resources/config/application-prod.yml , and `replace this :
 
