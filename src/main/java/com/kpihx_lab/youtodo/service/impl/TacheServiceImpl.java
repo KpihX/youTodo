@@ -68,14 +68,21 @@ public class TacheServiceImpl implements TacheService {
 
     @Override
     @Transactional(readOnly = true)
-    public Flux<Tache> findAll(Pageable pageable) {
+    public Flux<Tache> findAll(Pageable pageable, Long userId) {
         log.debug("Request to get all Taches");
-        return tacheRepository.findAllBy(pageable);
+        return tacheRepository.findAllBy(pageable, userId);
     }
 
-    public Flux<Tache> findAllWithEagerRelationships(Pageable pageable) {
-        return tacheRepository.findAllWithEagerRelationships(pageable);
+    public Flux<Tache> findAllWithEagerRelationships(Pageable pageable, Long userId) {
+        return tacheRepository.findAllWithEagerRelationships(pageable, userId);
     }
+
+    // @Override
+    // @Transactional(readOnly = true)
+    // public Flux<Tache> findByUser(Pageable pageable, Long userId) {
+    //     log.debug("Request to get all Taches by User : {}", userId);
+    //     return tacheRepository.findByUser(pageable, userId);
+    // }
 
     public Mono<Long> countAll() {
         return tacheRepository.count();

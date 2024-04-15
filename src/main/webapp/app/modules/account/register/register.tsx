@@ -107,7 +107,7 @@ export const RegisterPage = () => {
             </Button>
           </ValidatedForm>
           <p>&nbsp;</p>
-          <Alert color="warning">
+          {/* <Alert color="warning">
             <span>
               <Translate contentKey="global.messages.info.authenticated.prefix">If you want to</Translate>{' '}
             </span>
@@ -121,7 +121,7 @@ export const RegisterPage = () => {
                 <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
               </Translate>
             </span>
-          </Alert>
+          </Alert> */}
         </Col>
       </Row>
     </div>

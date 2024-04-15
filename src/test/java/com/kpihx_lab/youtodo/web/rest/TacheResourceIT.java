@@ -287,16 +287,16 @@ class TacheResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllTachesWithEagerRelationshipsIsEnabled() {
-        when(tacheServiceMock.findAllWithEagerRelationships(any())).thenReturn(Flux.empty());
+        when(tacheServiceMock.findAllWithEagerRelationships(any(), any())).thenReturn(Flux.empty());
 
         webTestClient.get().uri(ENTITY_API_URL + "?eagerload=true").exchange().expectStatus().isOk();
 
-        verify(tacheServiceMock, times(1)).findAllWithEagerRelationships(any());
+        verify(tacheServiceMock, times(1)).findAllWithEagerRelationships(any(), any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllTachesWithEagerRelationshipsIsNotEnabled() {
-        when(tacheServiceMock.findAllWithEagerRelationships(any())).thenReturn(Flux.empty());
+        when(tacheServiceMock.findAllWithEagerRelationships(any(), any())).thenReturn(Flux.empty());
 
         webTestClient.get().uri(ENTITY_API_URL + "?eagerload=false").exchange().expectStatus().isOk();
         verify(tacheRepositoryMock, times(1)).findAllWithEagerRelationships(any());

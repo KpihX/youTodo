@@ -173,13 +173,14 @@ public class TacheResource {
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<List<Tache>>> getAllTaches(
         @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false) Long userId,
         ServerHttpRequest request,
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of Taches");
         return tacheService
             .countAll()
-            .zipWith(tacheService.findAll(pageable).collectList())
+            .zipWith(tacheService.findAll(pageable, userId).collectList())
             .map(
                 countWithEntities ->
                     ResponseEntity.ok()

@@ -31,7 +31,7 @@ export const Tache = () => {
   const getAllEntities = () => {
     dispatch(
       getEntities({
-        login: account.login,
+        user_id: account.id,
         page: paginationState.activePage - 1,
         size: paginationState.itemsPerPage,
         sort: `${paginationState.sort},${paginationState.order}`,
@@ -45,7 +45,14 @@ export const Tache = () => {
       ...paginationState,
       activePage: 1,
     });
-    dispatch(getEntities({}));
+    dispatch(
+      getEntities({
+        user_id: account.id,
+        page: paginationState.activePage - 1,
+        size: paginationState.itemsPerPage,
+        sort: `${paginationState.sort},${paginationState.order}`,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -156,62 +163,64 @@ export const Tache = () => {
                   <th>
                     <Translate contentKey="youTodoApp.tache.categorie">Categorie</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
+                  {/* <th>
                     <Translate contentKey="youTodoApp.tache.user">User</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
+                  </th> */}
                   <th />
                 </tr>
               </thead>
               <tbody>
-                {tacheList.map((tache, i) => (
-                  <tr key={`entity-${i}`} data-cy="entityTable">
-                    <td>
-                      <Button tag={Link} to={`/tache/${tache.id}`} color="link" size="sm">
-                        {tache.id}
-                      </Button>
-                    </td>
-                    <td>{tache.titre}</td>
-                    <td>{tache.description}</td>
-                    <td>
-                      {tache.dateEcheance ? <TextFormat type="date" value={tache.dateEcheance} format={APP_LOCAL_DATE_FORMAT} /> : null}
-                    </td>
-                    <td>
-                      <Translate contentKey={`youTodoApp.Priorite.${tache.priorite}`} />
-                    </td>
-                    <td>
-                      <Translate contentKey={`youTodoApp.StatutTache.${tache.statut}`} />
-                    </td>
-                    <td>{tache.categorie ? <Link to={`/categorie/${tache.categorie.id}`}>{tache.categorie.nom}</Link> : ''}</td>
-                    <td>{tache.user ? tache.user.login : ''}</td>
-                    <td className="text-end">
-                      <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`/tache/${tache.id}`} color="info" size="sm" data-cy="entityDetailsButton">
-                          <FontAwesomeIcon icon="eye" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.view">View</Translate>
-                          </span>
-                        </Button>
-                        <Button tag={Link} to={`/tache/${tache.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                          <FontAwesomeIcon icon="pencil-alt" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.edit">Edit</Translate>
-                          </span>
-                        </Button>
-                        <Button
-                          onClick={() => (window.location.href = `/tache/${tache.id}/delete`)}
-                          color="danger"
-                          size="sm"
-                          data-cy="entityDeleteButton"
-                        >
-                          <FontAwesomeIcon icon="trash" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.delete">Delete</Translate>
-                          </span>
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {tacheList
+                  ? tacheList.map((tache, i) => (
+                      <tr key={`entity-${i}`} data-cy="entityTable">
+                        <td>
+                          <Button tag={Link} to={`/tache/${tache.id}`} color="link" size="sm">
+                            {tache.id}
+                          </Button>
+                        </td>
+                        <td>{tache.titre}</td>
+                        <td>{tache.description}</td>
+                        <td>
+                          {tache.dateEcheance ? <TextFormat type="date" value={tache.dateEcheance} format={APP_LOCAL_DATE_FORMAT} /> : null}
+                        </td>
+                        <td>
+                          <Translate contentKey={`youTodoApp.Priorite.${tache.priorite}`} />
+                        </td>
+                        <td>
+                          <Translate contentKey={`youTodoApp.StatutTache.${tache.statut}`} />
+                        </td>
+                        <td>{tache.categorie ? <Link to={`/categorie/${tache.categorie.id}`}>{tache.categorie.nom}</Link> : ''}</td>
+                        {/* <td>{tache.user ? tache.user.login : ''}</td> */}
+                        <td className="text-end">
+                          <div className="btn-group flex-btn-group-container">
+                            <Button tag={Link} to={`/tache/${tache.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                              <FontAwesomeIcon icon="eye" />{' '}
+                              <span className="d-none d-md-inline">
+                                <Translate contentKey="entity.action.view">View</Translate>
+                              </span>
+                            </Button>
+                            <Button tag={Link} to={`/tache/${tache.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                              <FontAwesomeIcon icon="pencil-alt" />{' '}
+                              <span className="d-none d-md-inline">
+                                <Translate contentKey="entity.action.edit">Edit</Translate>
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => (window.location.href = `/tache/${tache.id}/delete`)}
+                              color="danger"
+                              size="sm"
+                              data-cy="entityDeleteButton"
+                            >
+                              <FontAwesomeIcon icon="trash" />{' '}
+                              <span className="d-none d-md-inline">
+                                <Translate contentKey="entity.action.delete">Delete</Translate>
+                              </span>
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  : null}
               </tbody>
             </Table>
           ) : (

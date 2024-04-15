@@ -20,9 +20,15 @@ const apiUrl = 'api/taches';
 
 // Actions
 
-export const getEntities = createAsyncThunk('tache/fetch_entity_list', async ({ login, page, size, sort }: IQueryParams) => {
-  const requestUrl = `${apiUrl}?${sort ? `page=${page}&login=${login}&size=${size}&sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
-  return axios.get<ITache[]>(requestUrl);
+export const getEntities = createAsyncThunk('tache/fetch_entity_list', async ({ user_id, page, size, sort }: IQueryParams) => {
+  // console.log("Hello");
+  // console.log(user_id);
+  const requestUrl = `${apiUrl}?${sort ? `page=${page}&userId=${user_id}&size=${size}&sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
+  try {
+    return axios.get<ITache[]>(requestUrl);
+  } catch {
+    return;
+  }
 });
 
 export const getEntity = createAsyncThunk(

@@ -39,7 +39,16 @@ public interface TacheService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Flux<Tache> findAll(Pageable pageable);
+    Flux<Tache> findAll(Pageable pageable, Long userId);
+
+    /**
+     * Get all the taches.
+     *
+     * @param pageable the pagination information.
+     * @param user_id the user_id of the entity.
+     * @return the list of entities.
+     */
+    // Flux<Tache> findByUser(Pageable pageable, Long userId);
 
     /**
      * Get all the taches with eager load of many-to-many relationships.
@@ -47,7 +56,7 @@ public interface TacheService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Flux<Tache> findAllWithEagerRelationships(Pageable pageable);
+    Flux<Tache> findAllWithEagerRelationships(Pageable pageable, Long userId);
 
     /**
      * Returns the number of taches available.

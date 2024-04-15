@@ -67,11 +67,11 @@ export const TacheDetail = () => {
           <dt>
             <Translate contentKey="youTodoApp.tache.categorie">Categorie</Translate>
           </dt>
-          <dd>{tacheEntity.categorie ? tacheEntity.categorie.nom : ''}</dd>
-          <dt>
+          <dd>{tacheEntity.categorie ? tacheEntity.categorie.nom : 'Aucune Catégorie'}</dd>
+          {/* <dt>
             <Translate contentKey="youTodoApp.tache.user">User</Translate>
           </dt>
-          <dd>{tacheEntity.user ? tacheEntity.user.login : ''}</dd>
+          <dd>{tacheEntity.user ? tacheEntity.user.login : ''}</dd> */}
         </dl>
         <Button tag={Link} to="/tache" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

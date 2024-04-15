@@ -6,7 +6,7 @@
         "refreshListLabel": "Actualiser la liste",
         "createLabel": "Créer une nouvelle Tâche",
         "createOrEditLabel": "Créer ou éditer une Tâche",
-        "notFouned": "Aucune Tâche trouvé"
+        "notFound": "Aucune Tâche trouvée"
       },
       "created": "Une nouvelle Tâche a été créé avec l'identifiant {{ param }}",
       "updated": "La Tâche avec l'identifiant {{ param }} a été mise à jour",

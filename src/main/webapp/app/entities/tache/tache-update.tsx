@@ -26,13 +26,14 @@ export const TacheUpdate = () => {
   const isNew = id === undefined;
 
   const categories = useAppSelector(state => state.categorie.entities);
-  const users = useAppSelector(state => state.userManagement.users);
+  // const users = useAppSelector(state => state.userManagement.users);
   const tacheEntity = useAppSelector(state => state.tache.entity);
   const loading = useAppSelector(state => state.tache.loading);
   const updating = useAppSelector(state => state.tache.updating);
   const updateSuccess = useAppSelector(state => state.tache.updateSuccess);
   const prioriteValues = Object.keys(Priorite);
   const statutTacheValues = Object.keys(StatutTache);
+  const account = useAppSelector(state => state.authentication.account);
 
   const handleClose = () => {
     navigate('/tache');
@@ -63,7 +64,8 @@ export const TacheUpdate = () => {
       ...tacheEntity,
       ...values,
       categorie: categories.find(it => it.id.toString() === values.categorie?.toString()),
-      user: users.find(it => it.id.toString() === values.user?.toString()),
+      // user: users.find(it => it.id.toString() === values.user?.toString()),
+      user: account,
     };
 
     if (isNew) {
@@ -174,7 +176,7 @@ export const TacheUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField id="tache-user" name="user" data-cy="user" label={translate('youTodoApp.tache.user')} type="select">
+              {/* <ValidatedField id="tache-user" name="user" data-cy="user" label={translate('youTodoApp.tache.user')} type="select">
                 <option value="" key="0" />
                 {users
                   ? users.map(otherEntity => (
@@ -183,7 +185,7 @@ export const TacheUpdate = () => {
                       </option>
                     ))
                   : null}
-              </ValidatedField>
+              </ValidatedField> */}
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/tache" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

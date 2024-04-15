@@ -4,9 +4,12 @@ import com.kpihx_lab.youtodo.domain.Tache;
 import com.kpihx_lab.youtodo.repository.rowmapper.CategorieRowMapper;
 import com.kpihx_lab.youtodo.repository.rowmapper.TacheRowMapper;
 import com.kpihx_lab.youtodo.repository.rowmapper.UserRowMapper;
+import com.kpihx_lab.youtodo.web.rest.TacheResource;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.convert.R2dbcConverter;
 import org.springframework.data.r2dbc.core.R2dbcEntityOperations;
@@ -17,6 +20,7 @@ import org.springframework.data.relational.core.sql.Comparison;
 import org.springframework.data.relational.core.sql.Condition;
 import org.springframework.data.relational.core.sql.Conditions;
 import org.springframework.data.relational.core.sql.Expression;
+import org.springframework.data.relational.core.sql.Expressions;
 import org.springframework.data.relational.core.sql.Select;
 import org.springframework.data.relational.core.sql.SelectBuilder.SelectFromAndJoinCondition;
 import org.springframework.data.relational.core.sql.Table;
@@ -44,6 +48,8 @@ class TacheRepositoryInternalImpl extends SimpleR2dbcRepository<Tache, Long> imp
     private static final Table categorieTable = Table.aliased("categorie", "categorie");
     private static final Table userTable = Table.aliased("jhi_user", "e_user");
 
+    private final Logger log = LoggerFactory.getLogger(TacheRepositoryInternalImpl.class);
+
     public TacheRepositoryInternalImpl(
         R2dbcEntityTemplate template,
         EntityManager entityManager,
@@ -67,8 +73,10 @@ class TacheRepositoryInternalImpl extends SimpleR2dbcRepository<Tache, Long> imp
     }
 
     @Override
-    public Flux<Tache> findAllBy(Pageable pageable) {
-        return createQuery(pageable, null).all();
+    public Flux<Tache> findAllBy(Pageable pageable, Long userId) {
+        Comparison whereClause = Conditions.isEqual(entityTable.column("user_id"), Conditions.just(Long.toString(userId)));
+        // log.info("*****userId: " + userId);
+        return createQuery(pageable, whereClause).all();
     }
 
     RowsFetchSpec<Tache> createQuery(Pageable pageable, Condition whereClause) {
@@ -84,14 +92,15 @@ class TacheRepositoryInternalImpl extends SimpleR2dbcRepository<Tache, Long> imp
             .leftOuterJoin(userTable)
             .on(Column.create("user_id", entityTable))
             .equals(Column.create("id", userTable));
+
         // we do not support Criteria here for now as of https://github.com/jhipster/generator-jhipster/issues/18269
         String select = entityManager.createSelect(selectFrom, Tache.class, pageable, whereClause);
         return db.sql(select).map(this::process);
     }
 
     @Override
-    public Flux<Tache> findAll() {
-        return findAllBy(null);
+    public Flux<Tache> findAll(Long userId) {
+        return findAllBy(null, userId);
     }
 
     @Override
@@ -100,19 +109,24 @@ class TacheRepositoryInternalImpl extends SimpleR2dbcRepository<Tache, Long> imp
         return createQuery(null, whereClause).one();
     }
 
+    // public Flux<Tache> findByUser(Pageable pageable, Long userId) {
+    //     Condition whereClause = Conditions.isEqual(entityTable.column("user_id"), Conditions.just(userId.toString()));
+    //     return createQuery(pageable, whereClause).all();
+    // }
+
     @Override
     public Mono<Tache> findOneWithEagerRelationships(Long id) {
         return findById(id);
     }
 
     @Override
-    public Flux<Tache> findAllWithEagerRelationships() {
-        return findAll();
+    public Flux<Tache> findAllWithEagerRelationships(Long userId) {
+        return findAll(userId);
     }
 
     @Override
-    public Flux<Tache> findAllWithEagerRelationships(Pageable page) {
-        return findAllBy(page);
+    public Flux<Tache> findAllWithEagerRelationships(Pageable page, Long userId) {
+        return findAllBy(page, userId);
     }
 
     private Tache process(Row row, RowMetadata metadata) {
